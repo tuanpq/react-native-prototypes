@@ -9,17 +9,21 @@ import {Button, View} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import CustomSidebarMenu from './CustomSidebarMenu';
 import NavigationDrawerHeader from './NavigationDrawerHeader';
 import Colors from './styles/Colors';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const MaterialTab = createMaterialBottomTabNavigator();
 
 function HomeScreens({navigation}) {
   console.log('HomeScreens: enter');
   return (
-    <Stack.Navigator
+    <Tab.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: Colors.controlBackground,
@@ -32,9 +36,9 @@ function HomeScreens({navigation}) {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
       }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Classes" component={ClassesScreen} />
-    </Stack.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Classes" component={ClassesScreen} />
+    </Tab.Navigator>
   );
 }
 
@@ -92,7 +96,7 @@ function NotificationScreen({navigation}) {
 function ProfileScreens({navigation}) {
   console.log('ProfileScreens: enter');
   return (
-    <Stack.Navigator
+    <MaterialTab.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: Colors.controlBackground,
@@ -105,13 +109,21 @@ function ProfileScreens({navigation}) {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
       }}>
-      <Stack.Screen name="Profile" component={ProfileScreen} />
-    </Stack.Navigator>
+      <MaterialTab.Screen name="Profile" component={ProfileScreen} />
+      <MaterialTab.Screen name="Point" component={PointScreen} />
+    </MaterialTab.Navigator>
   );
 }
 
 function ProfileScreen({navigation}) {
   console.log('ProfileScreen: enter');
+  return (
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} />
+  );
+}
+
+function PointScreen({navigation}) {
+  console.log('PointScreen: enter');
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} />
   );
